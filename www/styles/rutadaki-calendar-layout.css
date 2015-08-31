@@ -1,0 +1,163 @@
+
+.day_container {
+	float: left;
+	height: 40px;
+	width: 14%;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	
+}
+
+#lista_eventos {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+.empty_day {
+	color: white;
+	position: relative;
+}
+
+.empty_day.other_month {
+
+}
+
+.empty_day:hover {
+
+}
+
+.day_number{
+	float: right;
+	margin-right: 5px;
+	font-size: 14pt;
+}
+
+.full_day {
+	position: relative;
+}
+
+.full_day.other_month {
+
+}
+
+.full_day:hover {
+	
+}
+
+a.events_number {
+	position: absolute;
+	bottom: 0px;
+	margin-left: 5px;
+	font-size: 13px;
+}
+
+#calendar_content {
+	width: 100%;
+	height: auto;
+	clear: both;
+	position: relative;
+	margin-left: 0px;
+	margin-right: 0px;
+	
+	/* outline: dotted; */
+}
+
+#calendar_header {
+	width: 100%;
+	
+}
+
+#calendar {
+	width: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.day_header_container {
+	clear: both;
+	margin-top: 60px;
+	width: 100%;
+}
+
+.day_header {
+	float: left;
+	width: 14%;
+	margin-left: 0;
+	margin-right: 0;
+	height: 25px;
+	margin-top: 15px;
+	font-size: 3pt;
+}
+
+#month_title_div {
+	float: left; 
+	height: 15px;
+	font-size: 20px;
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 70%;
+
+}
+
+#month_title {
+	font-size: 20px;
+	width: 100px;
+	display: inline-block;
+
+}
+
+#year_title {
+	font-size: 16px;
+	display: inline-block;
+	float: right;
+}
+
+.calendar_button {
+	line-height: 20px;
+	width: 30px;
+	height: 20px;
+}
+
+#next_button {
+	float: left;
+}
+
+#prev_button {
+	float: left;
+}
+
+#loading_icon {
+	/* position: relative; */
+	display: block;
+	margin: auto;
+	/* top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0; */
+	width: 100px;
+	height: auto;
+}
+
+/* Estilos de la ventana emergente */
+.ventana {
+	display: none; /*es importante ocultar las ventanas previamente */
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 28px;
+	font-size: 15px;
+	text-align: justify;
+}
+
+.event_label {
+	
+}
+
+.event_info {
+	margin-left: 5px;
+}
+
+.event_container {
+	margin-bottom: 5px;
+}

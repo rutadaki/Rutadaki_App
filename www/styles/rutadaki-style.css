@@ -1,0 +1,331 @@
+@font-face {
+    font-family: rutadakiFont;
+    src: url(fonts/rutadaki_font.ttf);
+}
+
+@font-face {
+    font-family: rutadakiContentFont;
+    src: url(fonts/BIRCHSTD.OTF);
+}
+
+html{
+  /* background: url(../images_rutadaki/fond_ciudad_pixel.jpg) no-repeat center center fixed; */
+  background: url(../images_rutadaki/new_corregido.jpg) no-repeat center center /* fixed */; 
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;
+  /* height: 100%;
+  width: 100%; */
+  min-height: 100%;
+  /* background-color: blue; */
+}
+#wrapper {
+	color: white;
+	font-family: rutadakiFont;
+}
+
+body{
+	
+}
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../images_rutadaki/cargador_pezazul.gif) 50% 50% no-repeat rgb(249,249,249);
+}
+
+ nav, header, footer, section, aside {
+
+} 
+
+footer {
+	text-align: center;
+	font-size: 10pt;
+}
+
+header {
+	color: white;
+	
+}
+
+#app_button:HOVER {
+	background-color: white;
+}
+
+#wrapper {
+
+}
+#content{
+	font-family: rutadakiContentFont;
+}
+
+#main_menu {
+	
+}
+
+#error_div{
+	background-color: rgba(255,0,0,1);
+	color: white;
+	display: none;
+	text-align: center;
+	font-family: sans-serif;
+}
+
+#marketing_menu {
+	color: white;
+	background-color: #00B3D5;
+	padding-right: 100px;
+	
+}
+
+#links_container{
+	float: right;
+	margin-right: 70px;
+	height: 100%;
+}
+
+.marketing_button{
+	display: block;
+	float: right;
+	background-size: 100% 100%;
+	height: 100%;
+	width: 40px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+#facebook_link{
+	background-image: url(../images_rutadaki/social_media/f.png);
+}
+
+#twitter_link{
+	background-image: url(../images_rutadaki/social_media/t.png);
+}
+
+#contact_link{
+	background-image: url(../images_rutadaki/social_media/mail.png);
+}
+
+#main_menu ul {
+	list-style: none;
+}
+
+.main_menu_button {
+	text-decoration: none;
+	font-size: 16pt;
+	color: white;
+	cursor: pointer;
+	border-radius: 7px;
+	text-align: center;
+	/* background-color: #00B3D5; */
+}
+
+.main_menu_button:HOVER {
+	color: #00B3D5;
+	background-color: white;
+	
+}
+
+.main_menu_button.active {
+	color:#00B3D5;
+	background-color: white;
+	border: solid;
+}
+
+#content {
+	
+}
+
+#main_logo {
+	
+}
+
+#search_container {
+	
+}
+
+.loaded_content {
+
+}
+
+#outstanding {
+	/* visibility: hidden; */
+	/* background-color: #00B3D5; */
+	background-color: rgba(0,149,182,0.5);
+	/* opacity: 0.7; */
+	border-radius: 10px;
+	color: white;
+	text-align: justify;
+	padding-left: 3px;
+	padding-right: 3px;
+}
+
+#outstanding h3 {
+	text-align: center;
+}
+
+#speech-bubble {
+	float: left;
+	position: relative;
+	width: 252px;
+	height: 40px;
+	padding: 0px;
+	background: #FFFFFF;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	position: relative;
+}
+
+.category {
+	background-position: right 18px top;
+	background-repeat: no-repeat;
+	background-size:100% 100%;
+	border-radius: 10px;
+}
+
+.category .event_container{
+	margin-left: 10%;
+	margin-top: 40px;
+}
+
+.category .event_title {
+	font-size: 48px;
+	
+}
+
+.category .event_title .event_label{
+	display: none;
+	
+}
+
+#contact_info_container  {
+	font-size: 24px;
+	margin-left: 20px;
+	margin-top: -30px;
+}
+
+#contact_info_container h2 {
+	font-size: 48px;
+}
+
+#contact_info_container div {
+	margin-bottom: 10px;
+}
+
+#contact_info_container .tab_description {
+	margin-bottom: 30px;
+}
+
+.category.conciertos {
+	background-image: url(../images_rutadaki/fondo_categorias/fondo_comun_conciertos.jpg);
+}
+
+.category.shows {
+	background-image: url(../images_rutadaki/fondo_categorias/fondo_comun_espectaculo.jpg);
+}
+
+.category.salir {
+	background-image: url(../images_rutadaki/fondo_categorias/fondo_comun_salir.jpg);
+}
+
+.category.search {
+	background-image: url(../images_rutadaki/respuesta_buscador_fondo.jpg);
+}
+
+.category.arte_y_cultura {
+	background-image: url(../images_rutadaki/fondo_categorias/fondo_comun_aycult.jpg);
+}
+
+.category.actividades{
+	background-image: url(../images_rutadaki/fondo_categorias/fondo_comun_actividades.jpg);
+}
+
+.category.contact{
+	background-image: url(../images_rutadaki/fondo_categorias/fondo_comun_contacto.jpg);
+}
+
+.category.outstanding{
+	background-image: url(../images_rutadaki/fondo_categorias/fondo_comun_destacados.jpg);
+	background-position: right top;
+}
+
+/* #content .event_container{
+	background-color: transparent;
+	width: 70%;
+} */
+
+#content .event_info{
+	width: 90%;
+}
+
+#content .event_title{
+	width: 90%;
+	/* color: #d9e8ec; */
+	color: white;
+}
+
+#content .event_info:not(.event_title){
+	margin-left: 40px;
+	color: #b1dce9;
+	font-size: 24px;
+}
+
+input.search_box {
+	border: none;
+	background: transparent;
+	outline: none;
+	
+}
+
+#image_interrogacion {
+	background-image: url(../images_rutadaki/interrogacion.png);
+	background-size: 100% 100%;
+	height: 50px;
+	width: 40px;
+	margin-top: 20px;
+	float:left;
+}
+
+#image_exclamacion {
+	background-image: url(../images_rutadaki/exclamacion.png);
+	background-size: 100% 100%;
+	height: 50px;
+	width: 40px;
+	margin-top: -5px;
+	margin-left: -2px;
+	float:left;
+}
+
+div.search_button_div{
+	float:left;
+}
+
+div.search_button_div input {
+	height:40px;
+	width: 40px;
+	border: none;
+	outline: none;
+	background: url("../images_rutadaki/lupa_blanco_web.png") no-repeat;
+	background-size: contain;
+    cursor:pointer;
+}
+
+#speech-bubble:after {
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 7px 0 7px 15px;
+	border-color: transparent #FFFFFF;
+	display: block;
+	width: 0;
+	z-index: 1;
+	margin-top: -7px;
+	right: -15px;
+	top: 50%;
+}

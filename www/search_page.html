@@ -1,0 +1,29 @@
+<div class="page search">
+	<div class="page_header">
+
+		<div id="day_title"></div>
+	</div>
+	<div id="search_content"></div>
+	
+	
+	<script>
+	function refreshPage() {
+		//navigator.notification.alert("obtener calendario 1");
+		
+		//$('.year_title').text(current_year);
+
+		$("#search_content")
+				.html(
+						"<img id='loading_icon' src ='images_rutadaki/loader-blanco.gif'/>");
+		$.ajax({
+			url : "http://www.rutadaki.com/services/searchEventsByText.jsp?search_text="+current_search,
+			success : function(data) {
+				$("#search_content").html(data);		
+			}
+		});
+
+	}
+	
+	refreshPage();
+	</script>
+</div>

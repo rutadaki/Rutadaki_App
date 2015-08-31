@@ -1,0 +1,190 @@
+/* body {
+    height: 100%;
+    width: 320px;
+} */
+
+header {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    padding: 0;
+    color: #FFF;
+    background: #000;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+
+footer {
+	position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding: 10;
+    height: 80px;
+    
+}
+
+footer .app_banner {
+	width: 100%;
+	height: 100%;
+}
+
+footer a {
+	width: 90%;
+	height: 90%;
+	padding: 4%;
+	display: block;
+}
+
+footer .app_banner a img{
+	width: auto;
+	height: 100%;
+	display: block;
+	margin:auto;
+	border-radius: 2px;
+}
+
+#app_button {
+	
+}
+
+.fb-share-button{
+	display: none;
+}
+
+.event_info a{
+	display: none;
+}
+
+#app_nav_button {
+	width: 20px;
+	height: 40px;;
+	/* background-color: red; */
+	float: left;
+}
+
+#app_nav_button.back {
+	background: url(../images_app/arrow-white-left.svg) no-repeat center center /* fixed */;
+	background-size: 100% 100%;
+	float: left;
+	width: 20px;
+	height: 40px;
+	margin-top: 5px;
+}
+
+#app_icon{
+	float: left;
+	margin-top: 5px;
+	height: 40px;
+	width: 40px;
+	background: url(../images_app/boton_app_redondo.png) no-repeat center center /* fixed */;
+	background-size: 100% 100%;
+}
+
+#search_div{
+	float: right;
+	/* margin-top: 5px;
+	margin-right: 5px;
+	height: 40px;
+	width: 40px;
+	background: url(../images_app/lupa_blanco_web.png) no-repeat center center fixed;
+	background-size: 100% 100%; */
+}
+
+#app_title{
+	float: left;
+	font-size: 22px;
+	margin-left: 7px;
+	z-index: -50;
+}
+
+#wrapper {
+    position: absolute;
+    padding:0;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom:0; /*60px*/
+    /* background: #CCC; */
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#content {
+    padding: 5px;
+}
+
+
+input {
+	outline: none;
+	
+}
+input[type=search] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none; /* remove the search and cancel icon */
+}
+
+/* search input field */
+input[type=search] {
+	background: #ededed url(../images_app/search-icon.png) no-repeat 9px center;
+	border: solid 1px #ccc;
+	padding: 9px 10px 9px 32px;
+	width: 55px;
+	
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+	
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+}
+input[type=search]:focus {
+	width: 130px;
+	background-color: #fff;
+	border-color: #6dcff6;
+	
+	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
+/* Serch button styles */
+input:-moz-placeholder {
+	color: #999;
+}
+input::-webkit-input-placeholder {
+	color: #999;
+}
+
+/* demo B */
+input[type=search] {
+	width: 15px;
+	padding-left: 10px;
+	color: transparent;
+	cursor: pointer;
+}
+input[type=search]:hover {
+	background-color: #fff;
+}
+input[type=search]:focus {
+	width: 130px;
+	padding-left: 32px;
+	color: #000;
+	background-color: #fff;
+	cursor: auto;
+}
+input:-moz-placeholder {
+	color: transparent;
+}
+input::-webkit-input-placeholder {
+	color: transparent;
+}

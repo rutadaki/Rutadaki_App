@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
+
+<!-- PhoneGap -->
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+<!-- JQUERY 
+<link rel="stylesheet" href="styles/jquery-ui.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>-->
+
+<script
+	src="bower_components/jquery/dist/jquery.js"></script>
+
+<!-- JQUERY MOBILE-->
+<!-- <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+
+<!-- STYLES -->
+<link rel="stylesheet" href="styles/rutadaki-layout.css">
+<link rel="stylesheet" href="styles/rutadaki-calendar-layout.css">
+<link rel="stylesheet" href="styles/rutadaki-calendar-style.css">
+<link rel="stylesheet" href="styles/rutadaki-style.css">
+
+<title>Insert title here</title>
+</head>
+<body onload="onLoad()">
+	<script type="text/javascript">
+
+		
+		var Dia = new Array("Domingo", "Lunes", "Martes", "Miércoles",
+				"Jueves", "Viernes", "Sábado", "Domingo");
+		var Mes = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo",
+				"Junio", "Julio", "Agosto", "Septiembre", "Octubre",
+				"Noviembre", "Diciembre");
+
+		var selected_month = 0;
+		var selected_day = 0;
+		var selected_year = 0;
+		
+		var current_search = "";
+		
+		function currentTab() {
+			var loc = window.location.pathname;
+			var dir = loc.substring(loc.lastIndexOf('/') + 1, loc.length);
+			return dir;
+		}
+		
+		function getUrlParameter(sParam) {
+			var sPageURL = window.location.search.substring(1);
+			var sURLVariables = sPageURL.split('&');
+			for (var i = 0; i < sURLVariables.length; i++) {
+				var sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] == sParam) {
+					return sParameterName[1];
+				}
+			}
+			return null;
+		}
+		
+		function onLoad(){
+			window.onpopstate = function(event) {
+
+				var loc = window.location.pathname;
+				var dir = loc.substring(loc.lastIndexOf('/') + 1, loc.length);
+
+				if (dir == "calendar") {
+					//go_to_Calendar(0,0);
+					$(".page").remove();
+					$(".page.search").remove();
+					$("#calendar").show();
+					$("#app_nav_button").removeClass("back");
+					$("#app_title").html("Rutadaki");
+				} else if (dir == "day_page") {
+					$(".search").remove();
+					$(".day_events").show();
+					date = new Date(selected_year, selected_month,
+							selected_day, 0, 0, 0, 0);
+
+					dia_semana = Dia[date.getDay()];
+
+					num_mes = parseInt(selected_month) + 1;
+
+					$("#app_title").html(
+							dia_semana + " " + selected_day + "/" + num_mes
+									+ "/" + selected_year);
+				} else if (dir == "search"){
+					$(".day_events").hide();
+					$("#calendar").hide();
+					$.ajax({
+						url : "search_page.html",
+						success : function(data) {
+							$("#content").append(data);
+							$("#app_nav_button").addClass("back");
+						}
+					});
+				} 
+			};
+			
+			document.addEventListener("deviceready", onDeviceReady, false);
+			
+			// enable ajax cross domain requests
+			$.support.cors = true;
+
+			go_to_Calendar(0, 0);
+			
+			$.ajax({
+				url : "http://www.rutadaki.com/publi/app_banner.html",
+				success : function(data) {
+					$("footer").html(data);
+				}
+			});
+		}
+		
+		// Cordova is loaded and it is now safe to make calls Cordova methods
+	    //
+	    function onDeviceReady() {
+	        document.addEventListener("offline", onOffline, false);
+	        document.addEventListener("online", onOnline, false);
+	    }
+
+	    // Handle the offline event
+	    //
+	    function onOffline() {
+	    	//alert("Se ha perdido la conexión a Internet");
+	    	$("#error_div").html("Sin conexión a Internet");
+	    	$("#error_div").show();
+	    }
+	    
+	    function onOnline() {
+	    	//alert("Se ha perdido la conexión a Internet");
+	    	$("#error_div").hide();
+	    	
+	    	var loc = window.location.pathname;
+			var dir = loc.substring(loc.lastIndexOf('/') + 1, loc.length);
+
+			if (dir == "calendar") {
+				//go_to_Calendar(0,0);
+				$(".page").remove();
+				$(".page.search").remove();
+				$("#calendar").show();
+				$("#app_nav_button").removeClass("back");
+				$("#app_title").html("Rutadaki");
+				refreshCalendar();
+				
+			} else if (dir == "day_page") {
+				$(".search").remove();
+				$("#calendar").hide();
+				$(".day_events").show();
+				date = new Date(selected_year, selected_month,
+						selected_day, 0, 0, 0, 0);
+
+				dia_semana = Dia[date.getDay()];
+
+				num_mes = parseInt(selected_month) + 1;
+				
+
+				$("#app_title").html(
+						dia_semana + " " + selected_day + "/" + num_mes
+								+ "/" + selected_year);
+				/* $.ajax({
+					url : "day_events_page.html",
+					success : function(data) {
+						$("#calendar").hide();
+						$("#content").append(data);
+					}
+				}); */
+				refreshPage();
+			} else if (dir == "search"){
+				$(".day_events").hide();
+				$("#calendar").hide();
+				$.ajax({
+					url : "search_page.html",
+					success : function(data) {
+						$("#content").append(data);
+						$("#app_nav_button").addClass("back");
+					}
+				});
+			}
+	    }
+
+		function go_to_dayEvents(day, month, year) {
+
+			$.ajax({
+				url : "day_events_page.html",
+				success : function(data) {
+					$("#calendar").hide();
+					$("#content").append(data);
+					$("#app_nav_button").addClass("back");
+
+					date = new Date(selected_year, selected_month,
+							selected_day, 0, 0, 0, 0);
+
+					dia_semana = Dia[date.getDay()];
+
+					num_mes = parseInt(selected_month) + 1;
+
+					$("#app_title").html(
+							dia_semana + " " + selected_day + "/" + num_mes
+									+ "/" + selected_year);
+
+					window.history.pushState({
+						state : 'new'
+					}, '', "day_page");
+				}
+			});
+		}
+
+		function go_to_Calendar(month, year) {
+			$.ajax({
+				url : "rutadaki_calendar.html",
+				success : function(data) {
+					
+					$("#content").append(data);
+
+					window.history.pushState({
+						state : 'new'
+					}, '', "calendar");
+				}
+			});
+		}
+
+		function go_to_Search(search_text) {
+			$.ajax({
+				
+				url : "search_page.html",
+				success : function(data) {
+					$(".page.day_events").hide();
+					$("#calendar").hide();
+					$("#content").append(data);
+					$("#app_nav_button").addClass("back");
+					if (currentTab != "search") {
+						window.history.pushState({
+							state : 'new'
+						}, search_text, "search");
+					}
+				}
+			});
+		}
+
+		$(document).ready(
+				function() {
+					$("#app_button").click(function() {
+						dir = currentTab();
+						if (dir == "calendar") {
+							//go_to_Calendar(0,0);
+							/* $(".page").remove();
+							$("#calendar").show(); */
+						} else if (dir == "day_page") {
+							window.history.back();
+						} else if (dir == "search") {
+							window.history.back();
+						}
+					});
+
+					$("form").submit(function(event) {
+
+						current_search = $("input:first").val();
+						go_to_Search(current_search);
+						event.preventDefault();
+					});
+					
+					$("input").focusin(function() {
+						$("#app_title").html("buscar:");
+					});
+					
+					$("input").focusout(
+							function() {
+								dir = currentTab();
+
+								if (dir == "calendar") {
+									$("#app_title").html("Rutadaki");
+								} else if (dir == "day_page") {
+									$("#app_title").html(
+											dia_semana + " " + selected_day
+													+ "/" + num_mes + "/"
+													+ selected_year);
+								}
+							});
+
+				});
+	</script>
+
+	<header>
+		<div id="app_button">
+			<div id="app_nav_button"></div>
+			<div id="app_icon"></div>
+
+		</div>
+		<div id="app_title">Rutadaki</div>
+		<div id="search_div">
+			<form>
+				<input type="search" placeholder="Search">
+			</form>
+		</div>
+	</header>
+	<div id="wrapper">
+		<div id="error_div"></div>
+		<div id="content"></div>
+		
+
+	</div>
+	<footer></footer>
+
+</body>
+</html>

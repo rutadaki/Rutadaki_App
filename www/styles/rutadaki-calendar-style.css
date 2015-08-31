@@ -1,0 +1,189 @@
+@font-face {
+    font-family: rutadakiFont;
+    src: url(fonts/rutadaki_font.ttf);
+}
+
+@font-face {
+    font-family: rutadakiContentFont;
+    src: url(fonts/BIRCHSTD.OTF);
+}
+
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.day_container {
+	border-radius: 5px;
+	font-size: 24px;
+}
+
+
+
+#lista_events {
+	
+}
+
+.empty_day {
+	background-color: #0095B6;
+	color: white;
+}
+
+.empty_day.other_month {
+	background-color: #B6B6B4;
+	color: white;
+	visibility: hidden;
+}
+
+.empty_day:hover {
+	background-color: silver;
+}
+
+.full_day {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	background-color: #0095B6;
+	color: white;
+	border: solid 1px;
+}
+
+.full_day.other_month {
+	background-color: #98AFC7;
+	color: white;
+	visibility: hidden;
+}
+
+.full_day:hover {
+	background-color: white;
+	color: #0095B6;
+	cursor: pointer;
+}
+
+.today_day_container {
+	border: dotted 3px;
+}
+
+.events_number {
+	font-size: 16pt;
+}
+
+#calendar_content {
+	
+}
+
+#calendar {
+	
+}
+
+.day_header_container {
+	
+}
+
+.day_number {
+	margin-left: 2px;
+	font-size: 18pt;
+}
+
+.day_header {
+	text-align: center;
+	font-size: 20px;
+	color: gray;
+}
+
+#month_title_div {
+	
+}
+
+#month_title {
+	color: black;
+	font-size: 30px;
+	font-family: rutadakiFont;
+}
+
+#year_title {
+	color: gray;
+	font-size: 15px;
+}
+
+.calendar_button {
+	background-color: #0095B6;
+	color: white;
+	text-align: center;
+	border-radius: 7px;
+}
+
+#next_button {
+	
+}
+
+#prev_button {
+	
+}
+
+.calendar_button:hover {
+	color: blue;
+	background-color: white;
+	cursor: pointer;
+}
+
+#loading_icon {
+	
+}
+
+.lisa_eventos {
+	background-color: #00D2F8;
+}
+
+/* Estilos de la ventana emergente */
+.ventana {
+	display: none; /*es importante ocultar las ventanas previamente */
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 28px;
+	font-size: 15px;
+	text-align: justify;
+	background-color: #00D2F8;
+	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* .ui-dialog-title-bar{
+	background-color: #00B3D5; 
+} */
+
+.ui-dialog {
+	/* background-color: #00D2F8; */
+}
+
+.event_label {
+	color: white;
+	font: bolder;
+}
+
+.event_info {
+	
+}
+
+.event_title {
+	font-size: 32pt;
+	color: white;
+}
+
+.event_info:not(.event_title){
+	margin-left: 40px;
+	color: #b1dce9;
+	font-size: 24px;
+}
+
+.event_title .event_label{
+	display: none;
+	
+}
+
+.event_container {
+	font-family: rutadakiContentFont;
+	font-size: 18pt;
+	background-color: #47A8B8;
+	border-radius: 10px;
+	padding: 10px;
+}

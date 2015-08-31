@@ -1,0 +1,156 @@
+
+	<div id="calendar">
+		<!-- <div id="year_title"></div> -->
+		<div id="calendar_header">
+			<div id="prev_button" class="calendar_button">&larr;</div>
+			<div id="month_title_div" >
+				<span id="month_title">Noviembre</span> <span id="year_title"></span>
+			</div>
+			<!-- <span id="year_title"></span> -->
+			<div id="next_button" class="calendar_button" >&rarr;</div>
+		</div>
+		<div class="day_header_container">
+			<div class="day_header">Lunes</div>
+			<div class="day_header">Martes</div>
+			<div class="day_header">Miercoles</div>
+			<div class="day_header">Jueves</div>
+			<div class="day_header">Viernes</div>
+			<div class="day_header">Sabado</div>
+			<div class="day_header">Domingo</div>
+		</div>
+
+		<div id="calendar_content"></div>
+
+	</div>
+
+	<div id="ventana_eventos" class="ventana" title="Eventos" ></div>
+<!-- </body> -->
+<script type="text/javascript">
+	var d = new Date();
+	//var RUTADAKI_HOME = "http://localhost:8080/RutadakiServer";
+	//var RUTADAKI_HOME = "http://www.wsitio.com/rutadaki";
+	//var RUTADAKI_HOME = "http://detarsis.noip.me:8080/RutadakiServer"
+	//var RUTADAKI_HOME = "http://192.168.1.117:8080/RutadakiServer"
+	var current_month = d.getMonth();
+	var current_year = d.getFullYear();
+	var current_day = d.getDate();
+	
+	var today_day = d.getDate();
+	var today_month = d.getMonth();
+	var today_year = d.getFullYear();
+	
+	var months = [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+			"Julio", "Agosto", "Septiembre", "Octubre", "Noviembre",
+			"Diciembre" ];
+	function showEventsDayPopUp(day, month, year) {
+		$.ajax({
+			url : "http://www.rutadaki.com/services/getEventsByDay.jsp?month=" + month
+					+ "&year=" + year + "&day=" + day,
+			success : function(data) {
+				$("#ventana_eventos").html(data);
+				
+				var width_screen = $(window).width();
+				var width_dialog = 590;
+				if(width_screen < 600){
+					width_dialog = width_screen*0.9;	
+				}
+				
+				$("#ventana_eventos").dialog({
+					width : width_dialog, //590, // ancho de la ventana -->
+					height : 350, //altura de la ventana -->
+					show : "scale", // animación de la ventana al aparecer -->
+					hide : "scale", // animación al cerrar la ventana -->
+					resizable : "false", // fija o redimensionable si ponemos este valor a "true" -->
+					position : "center",// posicion de la ventana en la pantalla (left, top, right...) -->
+					modal : "true" // si esta en true bloquea el contenido de la web mientras la ventana esta activa (muy elegante) -->
+				});
+			}
+		});
+	}
+
+	function refreshCalendar() {
+		//navigator.notification.alert("obtener calendario 1");
+		var month = months[current_month];
+		$('#month_title').html(month);
+		$('#year_title').html(current_year);
+		//$('.year_title').text(current_year);
+		$("#calendar_content").html("<img id='loading_icon' src ='images_rutadaki/loader-blanco.gif'/>");
+		//document.getElementById("year_title").innerHTML = current_year;
+		
+		//alert("obtener calendario");
+		
+		$.ajax({
+			url : "http://www.rutadaki.com/services/getEventsByMonth.jsp?month="
+					+ current_month + "&year=" + current_year,
+			cache: false,
+      			error: function (xhr, ajaxOptions, thrownError){
+     
+                		alert(xhr.statusText);
+                		alert(thrownError);
+           		 },
+			success: function(data) {
+				//alert("calendario obtenido");
+				$("#calendar_content").html(data);
+
+				$(".full_day").each(function() {
+					
+					dia_click = $(this).attr("day");
+					mes_click = $(this).attr("month");
+					anio_click = $(this).attr("year");
+					
+					$(this).on("click", function() {
+						dia_click = $(this).attr("day");
+						mes_click = $(this).attr("month");
+						anio_click = $(this).attr("year");
+						
+						selected_month=mes_click;
+						selected_year=anio_click;
+						selected_day=dia_click;
+						
+						//alert("CLick en el dia "+dia_click);
+						//showEventsDayPopUp(dia_click, mes_click, anio_click);
+						go_to_dayEvents(dia_click, mes_click, anio_click);
+					});
+					
+					if(dia_click == today_day && mes_click == today_month && anio_click == today_year){
+						$(this).addClass("today_day_container");
+					}
+				});
+				
+			}
+		});
+
+	}
+
+	$("#next_button").click(function() {
+		current_month++;
+		if (current_month == 12) {
+			current_month = 0;
+			current_year++;
+		}
+		refreshCalendar();
+	});
+	$("#prev_button").click(function() {
+		current_month--;
+		if (current_month == -1) {
+			current_month = 11;
+			current_year--;
+		}
+		refreshCalendar();
+	});
+	
+	/* $("#calendar").on( "swipeleft", swipeleftHandler );
+	
+	$("#calendar").on( "swiperight", swiperightHandler );
+	 
+	  // Callback function references the event target and adds the 'swipeleft' class to it
+	  function swipeleftHandler( event ){
+		  $("#next_button").trigger("click");
+	  }
+	  
+	  function swiperightHandler( event ){
+		  $("#prev_button").trigger("click");
+	  } */
+
+	refreshCalendar();
+</script>

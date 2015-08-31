@@ -1,0 +1,60 @@
+<div class="page day_events">
+	<div class="page_header">
+
+		<div id="day_title"></div>
+	</div>
+	<div id="page_content"></div>
+	
+	
+	<script>
+	function refreshPage() {
+		//navigator.notification.alert("obtener calendario 1");
+		
+		//$('.year_title').text(current_year);
+		$("#page_content")
+				.html(
+						"<img id='loading_icon' src ='images_rutadaki/loader-blanco.gif'/>");
+		//document.getElementById("year_title").innerHTML = current_year;
+		
+		//alert("obtener calendario");
+		
+		$.ajax({
+			url : "http://www.rutadaki.com/services/getEventsByDay.jsp?month=" + selected_month
+			+ "&year=" + selected_year + "&day=" + selected_day,
+			success : function(data) {
+				//alert("calendario obtenido");
+				$("#page_content").html(data);
+
+				/* $(".full_day").each(function() {
+					
+					dia_click = $(this).attr("day");
+					mes_click = $(this).attr("month");
+					anio_click = $(this).attr("year");
+					
+					$(this).on("click", function() {
+						dia_click = $(this).attr("day");
+						mes_click = $(this).attr("month");
+						anio_click = $(this).attr("year");
+						
+						selected_month=mes_click;
+						selected_year=anio_click;
+						selected_day=dia_click;
+						
+						//alert("CLick en el dia "+dia_click);
+						//showEventsDayPopUp(dia_click, mes_click, anio_click);
+						go_to_DayEvents(dia_click, mes_click, anio_click);
+					});
+					
+					if(dia_click == today_day && mes_click == today_month && anio_click == today_year){
+						$(this).addClass("today_day_container");
+					}
+				}); */
+				
+			}
+		});
+
+	}
+	
+	refreshPage();
+	</script>
+</div>
